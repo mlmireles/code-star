@@ -41,6 +41,18 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         setContentView(R.layout.activity_main);
     }
 
+    private String getEditInput(TextInputLayout input, TextInputEditText edit) {
+        input.setError(null);
+        input.setErrorEnabled(false);
+        return edit.getText().toString().trim();
+    }
+
+    private void setTextInputLayoutError(String error, TextInputLayout input) {
+        input.setError(error);
+        input.setErrorEnabled(true);
+        input.requestFocus();
+    }
+
     @Override
     public String getUserOne() {
         return this.getEditInput(this.mLabelUserOne, this.mEditUserOne);
@@ -49,9 +61,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @Override
     public void showUserOneNullError() {
         String error = String.format(Locale.ENGLISH, errorRequiredField, userOneField);
-        this.mLabelUserOne.setError(error);
-        this.mLabelUserOne.setErrorEnabled(true);
-        this.mLabelUserOne.requestFocus();
+        this.setTextInputLayoutError(error, this.mLabelUserOne);
     }
 
     @Override
@@ -62,14 +72,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @Override
     public void showUserTwoNullError() {
         String error = String.format(Locale.ENGLISH, errorRequiredField, userTwoField);
-        this.mLabelUserTwo.setError(error);
-        this.mLabelUserTwo.setErrorEnabled(true);
-        this.mLabelUserTwo.requestFocus();
+        this.setTextInputLayoutError(error, this.mLabelUserTwo);
     }
 
-    private String getEditInput(TextInputLayout input, TextInputEditText edit) {
-        input.setError(null);
-        input.setErrorEnabled(false);
-        return edit.getText().toString().trim();
-    }
 }
