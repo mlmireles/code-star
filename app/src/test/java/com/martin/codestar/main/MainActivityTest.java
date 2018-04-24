@@ -27,5 +27,10 @@ public class MainActivityTest {
     @Test
     public void shouldShowErrorWhenUserOneNull() {
         Mockito.when(this.mView.getUserOne()).thenReturn("");
+
+        this.mPresenter.onClickStart();
+
+        Mockito.verify(this.mView).getUserOne();
+        Mockito.verify(this.mView).showUserOneNullError();
     }
 }
