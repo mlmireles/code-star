@@ -23,11 +23,17 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     TextInputLayout mLabelUserOne;
     @BindView(R.id.input_user_one)
     TextInputEditText mEditUserOne;
+    @BindView(R.id.label_user_two)
+    TextInputLayout mLabelUserTwo;
+    @BindView(R.id.input_user_two)
+    TextInputEditText mEditUserTwo;
 
     @BindString(R.string.error_required_field)
     String errorRequiredField;
     @BindString(R.string.user_one)
     String userOneField;
+    @BindString(R.string.user_two)
+    String userTwoField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +54,12 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         this.mLabelUserOne.setError(error);
         this.mLabelUserOne.setErrorEnabled(true);
         this.mLabelUserOne.requestFocus();
+    }
+
+    @Override
+    public String getUserTwo() {
+        this.mLabelUserTwo.setError(null);
+        this.mLabelUserTwo.setErrorEnabled(false);
+        return this.mEditUserTwo.getText().toString().trim();
     }
 }

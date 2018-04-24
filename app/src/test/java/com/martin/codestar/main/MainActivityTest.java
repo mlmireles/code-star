@@ -35,4 +35,11 @@ public class MainActivityTest {
         Mockito.verify(this.mView).getUserOne();
         Mockito.verify(this.mView).showUserOneNullError();
     }
+
+    @Test
+    public void shouldShowErrorWhenUserTwoNull() {
+        Mockito.when(this.mView.getUserOne()).thenReturn("mlmireles");
+        Mockito.when(this.mView.getUserTwo()).thenReturn("");
+
+    }
 }

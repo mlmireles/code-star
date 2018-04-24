@@ -9,4 +9,6 @@ public interface IMainView {
     String getUserOne();
 
     void showUserOneNullError();
+
+    String getUserTwo();
 }
