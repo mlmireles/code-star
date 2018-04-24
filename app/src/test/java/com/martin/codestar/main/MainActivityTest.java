@@ -1,6 +1,7 @@
 package com.martin.codestar.main;
 
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -65,6 +66,9 @@ public class MainActivityTest {
 
     @Test
     public void shouldShowErrorWhenUserNotFound() {
+        ArgumentCaptor<IMainModelCallback> callbackCaptor
+                = ArgumentCaptor.forClass(IMainModelCallback.class);
+
         Mockito.when(this.mView.getUserTwo()).thenReturn(USER_ONE);
         Mockito.when(this.mView.getUserOne()).thenReturn(USER_BAD);
 
@@ -73,5 +77,15 @@ public class MainActivityTest {
         Mockito.verify(this.mView).getUserOne();
         Mockito.verify(this.mView).getUserTwo();
         Mockito.verify(this.mView).showProgressBar();
+
+        Mockito.verify(this.mModel).getUser(
+                Mockito.eq(USER_BAD),
+                callbackCaptor.capture()
+        );
+
+        callbackCaptor.getValue().onGetUserError(USER_BAD);
+
+        Mockito.verify(this.mView).hideProgressBar();
+        Mockito.verify(this.mView).showUserNotFoundError(USER_BAD);
     }
 }

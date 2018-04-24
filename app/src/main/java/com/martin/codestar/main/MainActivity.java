@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     String errorRequiredField;
     @BindString(R.string.same_user)
     String errorSameUser;
+    @BindString(R.string.user_not_found)
+    String errorUserNotFound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,5 +92,21 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @Override
     public void showProgressBar() {
         this.mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        this.mProgressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showUserNotFoundError(String username) {
+        if (username.equals(this.getUserOne())) {
+            String error = String.format(Locale.ENGLISH, errorUserNotFound, userOneField);
+            this.setTextInputLayoutError(error, this.mLabelUserOne);
+        } else {
+            String error = String.format(Locale.ENGLISH, errorUserNotFound, userTwoField);
+            this.setTextInputLayoutError(error, this.mLabelUserTwo);
+        }
     }
 }

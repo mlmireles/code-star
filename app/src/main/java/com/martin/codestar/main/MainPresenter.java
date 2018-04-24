@@ -1,5 +1,7 @@
 package com.martin.codestar.main;
 
+import com.martin.codestar.API.models.User;
+
 /**
  * Created by Martín on 23/04/2018
  *
@@ -34,5 +36,24 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback {
             this.mView.showSameUserError();
             return;
         }
+
+        this.mView.showProgressBar();
+        this.mModel.getUser(userOne, this);
+    }
+
+    @Override
+    public void onGetUserSuccess(User user) {
+
+    }
+
+    @Override
+    public void onGetUserError(String username) {
+        this.mView.showUserNotFoundError(username);
+        this.mView.hideProgressBar();
+    }
+
+    @Override
+    public void onGetServerError() {
+
     }
 }

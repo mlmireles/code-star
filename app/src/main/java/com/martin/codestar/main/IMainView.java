@@ -17,4 +17,8 @@ public interface IMainView {
     void showSameUserError();
 
     void showProgressBar();
+
+    void showUserNotFoundError(String username);
+
+    void hideProgressBar();
 }
