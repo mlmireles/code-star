@@ -2,8 +2,10 @@
     <string name="app_name">Code Star</string>
     <string name="player_one">Player One</string>
     <string name="user_one">User one</string>
-    <string name="insert_github_user">Insert GitHub user</string>
+    <string name="insert_github_user">Insert GitHub users</string>
     <string name="user_two">User two</string>
     <string name="start">Start!</string>
     <string name="winner">WINNER!</string>
+    <string name="avatar_content_description">User avatar image</string>
+    <string name="view_profile">View profile</string>
 </resources>

@@ -5,12 +5,18 @@
     android:layout_height="match_parent"
     tools:context="com.martin.codestar.MainActivity">
 
+    <TextView
+        style="@style/label"
+        android:text="@string/insert_github_user"
+        android:textSize="20sp"/>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:divider="@drawable/divider"
-        android:showDividers="middle|beginning">
+        android:showDividers="middle">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,11 +29,39 @@
                 android:labelFor="@id/input_user_one">
                 <android.support.design.widget.TextInputEditText
                     style="@style/input"
-                    android:id="@+id/input_user_one"
-                    android:text="@string/insert_github_user"
-
-                    />
+                    android:id="@+id/input_user_one" />
             </android.support.design.widget.TextInputLayout>
+
+            <RelativeLayout android:id="@+id/user_one_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_user_one"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone">
+
+                <ImageView
+                    style="@style/avatar"
+                    android:id="@+id/avatar_user_one"
+                    android:contentDescription="@string/avatar_content_description"/>
+                <TextView
+                    style="@style/label"
+                    android:id="@+id/label_main_name"
+                    android:layout_toEndOf="@id/avatar_user_one"
+                    tools:text="Name"/>
+                <TextView
+                    style="@style/label"
+                    android:id="@+id/label_main_company"
+                    android:layout_toEndOf="@id/avatar_user_one"
+                    android:layout_below="@id/label_main_name"
+                    tools:text="Company"/>
+                <TextView
+                    style="@style/label"
+                    android:layout_toEndOf="@id/avatar_user_one"
+                    android:layout_alignBottom="@id/avatar_user_one"
+                    android:textSize="@dimen/label_info_size"
+                    android:text="@string/view_profile"/>
+            </RelativeLayout>
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -41,20 +75,48 @@
                 android:labelFor="@id/input_user_two">
                 <android.support.design.widget.TextInputEditText
                     style="@style/input"
-                    android:id="@+id/input_user_two"
-                    android:text="@string/insert_github_user"
-                    />
+                    android:id="@+id/input_user_two" />
             </android.support.design.widget.TextInputLayout>
+
+            <RelativeLayout android:id="@+id/user_two_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_user_two"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone">
+
+                <ImageView
+                    style="@style/avatar"
+                    android:id="@+id/avatar_user_two"
+                    android:contentDescription="@string/avatar_content_description"/>
+                <TextView
+                    style="@style/label"
+                    android:id="@+id/label_main_user_two_name"
+                    android:layout_toEndOf="@id/avatar_user_two"
+                    tools:text="Name"/>
+                <TextView
+                    style="@style/label"
+                    android:id="@+id/label_main_user_two_company"
+                    android:layout_toEndOf="@id/avatar_user_two"
+                    android:layout_below="@id/label_main_user_two_name"
+                    tools:text="Company"/>
+                <TextView
+                    style="@style/label"
+                    android:layout_toEndOf="@id/avatar_user_two"
+                    android:layout_alignBottom="@id/avatar_user_two"
+                    android:textSize="@dimen/label_info_size"
+                    android:text="@string/view_profile"/>
+            </RelativeLayout>
         </RelativeLayout>
 
-        <Button
+        <Button android:id="@+id/button_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/button_start_margin"
             android:text="@string/start" />
 
-        <LinearLayout
+        <LinearLayout android:id="@+id/winner_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
