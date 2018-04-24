@@ -62,4 +62,12 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         this.mLabelUserTwo.setErrorEnabled(false);
         return this.mEditUserTwo.getText().toString().trim();
     }
+
+    @Override
+    public void showUserTwoNullError() {
+        String error = String.format(Locale.ENGLISH, errorRequiredField, userTwoField);
+        this.mLabelUserTwo.setError(error);
+        this.mLabelUserTwo.setErrorEnabled(true);
+        this.mLabelUserTwo.requestFocus();
+    }
 }
