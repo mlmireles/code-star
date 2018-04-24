@@ -43,9 +43,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     @Override
     public String getUserOne() {
-        this.mLabelUserOne.setError(null);
-        this.mLabelUserOne.setErrorEnabled(false);
-        return this.mEditUserOne.getText().toString().trim();
+        return this.getEditInput(this.mLabelUserOne, this.mEditUserOne);
     }
 
     @Override
@@ -58,9 +56,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     @Override
     public String getUserTwo() {
-        this.mLabelUserTwo.setError(null);
-        this.mLabelUserTwo.setErrorEnabled(false);
-        return this.mEditUserTwo.getText().toString().trim();
+        return this.getEditInput(this.mLabelUserTwo, this.mEditUserTwo);
     }
 
     @Override
@@ -69,5 +65,11 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         this.mLabelUserTwo.setError(error);
         this.mLabelUserTwo.setErrorEnabled(true);
         this.mLabelUserTwo.requestFocus();
+    }
+
+    private String getEditInput(TextInputLayout input, TextInputEditText edit) {
+        input.setError(null);
+        input.setErrorEnabled(false);
+        return edit.getText().toString().trim();
     }
 }
