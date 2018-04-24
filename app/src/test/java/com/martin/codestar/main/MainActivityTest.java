@@ -13,7 +13,7 @@ import org.mockito.MockitoAnnotations;
 
 public class MainActivityTest {
 
-    //private static final String USER_BAD = "asdfqwer";
+    private static final String USER_BAD = "asdfqwer";
     private static final String USER_ONE = "mlmireles";
     //private static final String USER_TWO = "google";
 
@@ -61,5 +61,17 @@ public class MainActivityTest {
         Mockito.verify(this.mView).getUserOne();
         Mockito.verify(this.mView).getUserTwo();
         Mockito.verify(this.mView).showSameUserError();
+    }
+
+    @Test
+    public void shouldShowErrorWhenUserNotFound() {
+        Mockito.when(this.mView.getUserTwo()).thenReturn(USER_ONE);
+        Mockito.when(this.mView.getUserOne()).thenReturn(USER_BAD);
+
+        this.mPresenter.onClickStart();
+
+        Mockito.verify(this.mView).getUserOne();
+        Mockito.verify(this.mView).getUserTwo();
+        Mockito.verify(this.mView).showProgressBar();
     }
 }

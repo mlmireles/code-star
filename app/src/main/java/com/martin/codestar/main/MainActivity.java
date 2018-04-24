@@ -4,6 +4,8 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.martin.codestar.R;
 
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     TextInputLayout mLabelUserTwo;
     @BindView(R.id.input_user_two)
     TextInputEditText mEditUserTwo;
+    @BindView(R.id.progress_main)
+    ProgressBar mProgressBar;
 
     @BindString(R.string.user_one)
     String userOneField;
@@ -81,5 +85,10 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     public void showSameUserError() {
         String error = String.format(Locale.ENGLISH, errorSameUser, userTwoField);
         this.setTextInputLayoutError(error, this.mLabelUserTwo);
+    }
+
+    @Override
+    public void showProgressBar() {
+        this.mProgressBar.setVisibility(View.VISIBLE);
     }
 }

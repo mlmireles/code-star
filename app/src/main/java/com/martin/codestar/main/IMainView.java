@@ -15,4 +15,6 @@ public interface IMainView {
     void showUserTwoNullError();
 
     void showSameUserError();
+
+    void showProgressBar();
 }
