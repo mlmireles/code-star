@@ -7,6 +7,9 @@ import android.os.Bundle;
 
 import com.martin.codestar.R;
 
+import java.util.Locale;
+
+import butterknife.BindString;
 import butterknife.BindView;
 
 /**
@@ -21,6 +24,11 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @BindView(R.id.input_user_one)
     TextInputEditText mEditUserOne;
 
+    @BindString(R.string.error_required_field)
+    String errorRequiredField;
+    @BindString(R.string.user_one)
+    String userOneField;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,5 +40,13 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         this.mLabelUserOne.setError(null);
         this.mLabelUserOne.setErrorEnabled(false);
         return this.mEditUserOne.getText().toString().trim();
+    }
+
+    @Override
+    public void showUserOneNullError() {
+        String error = String.format(Locale.ENGLISH, errorRequiredField, userOneField);
+        this.mLabelUserOne.setError(error);
+        this.mLabelUserOne.setErrorEnabled(true);
+        this.mLabelUserOne.requestFocus();
     }
 }

@@ -8,4 +8,6 @@
     <string name="winner">WINNER!</string>
     <string name="avatar_content_description">User avatar image</string>
     <string name="view_profile">View profile</string>
+
+    <string name="error_required_field">The field \"%l$s\" cannot be empty</string>
 </resources>

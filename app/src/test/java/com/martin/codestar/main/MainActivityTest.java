@@ -13,10 +13,12 @@ import org.mockito.MockitoAnnotations;
 
 public class MainActivityTest {
 
-    @Mock IMainView mView;
-    @Mock IMainModel mModel;
+    @Mock
+    private IMainView mView;
+    @Mock
+    private IMainModel mModel;
 
-    IMainPresenter mPresenter;
+    private IMainPresenter mPresenter;
 
     public MainActivityTest() {
         MockitoAnnotations.initMocks(this);
