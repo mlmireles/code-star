@@ -13,4 +13,6 @@ public interface IMainView {
     String getUserTwo();
 
     void showUserTwoNullError();
+
+    void showSameUserError();
 }

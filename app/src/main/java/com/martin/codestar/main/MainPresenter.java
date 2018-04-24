@@ -29,5 +29,10 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback {
             this.mView.showUserTwoNullError();
             return;
         }
+
+        if (userOne.equals(userTwo)) {
+            this.mView.showSameUserError();
+            return;
+        }
     }
 }

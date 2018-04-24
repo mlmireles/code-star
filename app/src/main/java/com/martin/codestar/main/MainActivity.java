@@ -28,12 +28,14 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @BindView(R.id.input_user_two)
     TextInputEditText mEditUserTwo;
 
-    @BindString(R.string.error_required_field)
-    String errorRequiredField;
     @BindString(R.string.user_one)
     String userOneField;
     @BindString(R.string.user_two)
     String userTwoField;
+    @BindString(R.string.error_required_field)
+    String errorRequiredField;
+    @BindString(R.string.same_user)
+    String errorSameUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,4 +77,9 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         this.setTextInputLayoutError(error, this.mLabelUserTwo);
     }
 
+    @Override
+    public void showSameUserError() {
+        String error = String.format(Locale.ENGLISH, errorSameUser, userTwoField);
+        this.setTextInputLayoutError(error, this.mLabelUserTwo);
+    }
 }

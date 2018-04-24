@@ -13,6 +13,10 @@ import org.mockito.MockitoAnnotations;
 
 public class MainActivityTest {
 
+    //private static final String USER_BAD = "asdfqwer";
+    private static final String USER_ONE = "mlmireles";
+    //private static final String USER_TWO = "google";
+
     @Mock
     private IMainView mView;
     @Mock
@@ -38,13 +42,24 @@ public class MainActivityTest {
 
     @Test
     public void shouldShowErrorWhenUserTwoNull() {
-        Mockito.when(this.mView.getUserOne()).thenReturn("mlmireles");
+        Mockito.when(this.mView.getUserOne()).thenReturn(USER_ONE);
         Mockito.when(this.mView.getUserTwo()).thenReturn("");
 
         this.mPresenter.onClickStart();
 
         Mockito.verify(this.mView).getUserOne();
         Mockito.verify(this.mView).getUserTwo();
+    }
 
+    @Test
+    public void shouldShowErrorWhenSameUser() {
+        Mockito.when(this.mView.getUserTwo()).thenReturn(USER_ONE);
+        Mockito.when(this.mView.getUserOne()).thenReturn(USER_ONE);
+
+        this.mPresenter.onClickStart();
+
+        Mockito.verify(this.mView).getUserOne();
+        Mockito.verify(this.mView).getUserTwo();
+        Mockito.verify(this.mView).showSameUserError();
     }
 }
