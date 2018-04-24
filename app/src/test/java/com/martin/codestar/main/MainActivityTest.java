@@ -41,5 +41,10 @@ public class MainActivityTest {
         Mockito.when(this.mView.getUserOne()).thenReturn("mlmireles");
         Mockito.when(this.mView.getUserTwo()).thenReturn("");
 
+        this.mPresenter.onClickStart();
+
+        Mockito.verify(this.mView).getUserOne();
+        Mockito.verify(this.mView).getUserTwo();
+
     }
 }

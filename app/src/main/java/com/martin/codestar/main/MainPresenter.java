@@ -19,9 +19,14 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback {
     @Override
     public void onClickStart() {
         String userOne = this.mView.getUserOne();
-
         if (userOne.isEmpty()) {
             this.mView.showUserOneNullError();
+            return;
+        }
+
+        String userTwo = this.mView.getUserTwo();
+        if (userTwo.isEmpty()) {
+            this.mView.showUserTwoNullError();
             return;
         }
     }
