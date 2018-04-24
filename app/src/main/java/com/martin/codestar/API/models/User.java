@@ -15,7 +15,7 @@ public class User {
     private int public_repos;
     private int followers;
     private int following;
-    
+
     public String getLogin() {
         return login;
     }

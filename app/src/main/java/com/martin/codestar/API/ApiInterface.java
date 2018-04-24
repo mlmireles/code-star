@@ -2,11 +2,9 @@ package com.martin.codestar.API;
 
 import com.martin.codestar.API.models.User;
 
-import java.util.HashMap;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.QueryMap;
+import retrofit2.http.Path;
 
 public interface ApiInterface {
 
@@ -19,5 +17,5 @@ public interface ApiInterface {
         public static final String PARAM_USERNAME = "username";
     }
     @GET(USERS.PATH)
-    Call<User> getUser(@QueryMap HashMap<String, String> params);
+    Call<User> getUser(@Path(USERS.PARAM_USERNAME) String username);
 }
