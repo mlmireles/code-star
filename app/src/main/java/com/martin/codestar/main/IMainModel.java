@@ -6,4 +6,5 @@ package com.martin.codestar.main;
  */
 
 public interface IMainModel {
+    void getUser(String username, IMainModelCallback callback);
 }
