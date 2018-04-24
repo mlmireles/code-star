@@ -5,5 +5,15 @@ package com.martin.codestar.main;
  *
  */
 
-public class MainPresenter {
+public class MainPresenter implements IMainPresenter, IMainModelCallback {
+
+    private IMainView mView;
+    private IMainModel mModel;
+
+    MainPresenter(IMainView mView, IMainModel mModel) {
+
+        this.mView = mView;
+        this.mModel = mModel;
+    }
+
 }

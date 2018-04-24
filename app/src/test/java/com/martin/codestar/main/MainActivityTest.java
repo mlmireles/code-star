@@ -1,5 +1,6 @@
 package com.martin.codestar.main;
 
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 
@@ -9,6 +10,9 @@ import org.mockito.MockitoAnnotations;
  */
 
 public class MainActivityTest {
+
+    @Mock IMainView mView;
+    @Mock IMainModel mModel;
 
     IMainPresenter mPresenter;
 
