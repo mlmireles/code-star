@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.martin.codestar.MainActivity">
+    tools:context="com.martin.codestar.main.MainActivity">
 
     <TextView
         style="@style/label"
