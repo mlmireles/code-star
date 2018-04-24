@@ -39,6 +39,7 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback {
 
         this.mView.showProgressBar();
         this.mModel.getUser(userOne, this);
+        this.mModel.getUser(userTwo, this);
     }
 
     @Override
@@ -48,12 +49,13 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback {
 
     @Override
     public void onGetUserError(String username) {
-        this.mView.showUserNotFoundError(username);
         this.mView.hideProgressBar();
+        this.mView.showUserNotFoundError(username);
     }
 
     @Override
     public void onGetServerError() {
-
+        this.mView.hideProgressBar();
+        this.mView.showServerError();
     }
 }

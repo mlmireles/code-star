@@ -16,7 +16,7 @@ public class MainActivityTest {
 
     private static final String USER_BAD = "asdfqwer";
     private static final String USER_ONE = "mlmireles";
-    //private static final String USER_TWO = "google";
+    private static final String USER_TWO = "google";
 
     @Mock
     private IMainView mView;
@@ -87,5 +87,30 @@ public class MainActivityTest {
 
         Mockito.verify(this.mView).hideProgressBar();
         Mockito.verify(this.mView).showUserNotFoundError(USER_BAD);
+    }
+
+    @Test
+    public void shouldShowAServerError() {
+        ArgumentCaptor<IMainModelCallback> callbackCaptor
+                = ArgumentCaptor.forClass(IMainModelCallback.class);
+
+        Mockito.when(this.mView.getUserOne()).thenReturn(USER_ONE);
+        Mockito.when(this.mView.getUserTwo()).thenReturn(USER_TWO);
+
+        this.mPresenter.onClickStart();
+
+        Mockito.verify(this.mView).getUserOne();
+        Mockito.verify(this.mView).getUserTwo();
+        Mockito.verify(this.mView).showProgressBar();
+
+        Mockito.verify(this.mModel).getUser(
+                Mockito.eq(USER_ONE),
+                callbackCaptor.capture()
+        );
+
+        callbackCaptor.getValue().onGetServerError();
+
+        Mockito.verify(this.mView).hideProgressBar();
+        Mockito.verify(this.mView).showServerError();
     }
 }

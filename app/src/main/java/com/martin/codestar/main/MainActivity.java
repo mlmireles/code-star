@@ -1,11 +1,13 @@
 package com.martin.codestar.main;
 
+import android.graphics.Color;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.martin.codestar.R;
 
@@ -21,6 +23,8 @@ import butterknife.BindView;
 
 public class MainActivity extends AppCompatActivity implements IMainView {
 
+    @BindView(R.id.label_info)
+    TextView mInfo;
     @BindView(R.id.label_user_one)
     TextInputLayout mLabelUserOne;
     @BindView(R.id.input_user_one)
@@ -97,6 +101,12 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @Override
     public void hideProgressBar() {
         this.mProgressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showServerError() {
+        this.mInfo.setText(R.string.error_server);
+        this.mInfo.setTextColor(Color.RED);
     }
 
     @Override

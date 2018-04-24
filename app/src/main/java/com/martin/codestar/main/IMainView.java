@@ -21,4 +21,6 @@ public interface IMainView {
     void showUserNotFoundError(String username);
 
     void hideProgressBar();
+
+    void showServerError();
 }

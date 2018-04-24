@@ -12,4 +12,5 @@
     <string name="error_required_field">The field \"%l$s\" cannot be empty</string>
     <string name="same_user">Same user, please write another user</string>
     <string name="user_not_found">User not found</string>
+    <string name="error_server">Server error</string>
 </resources>
