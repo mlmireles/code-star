@@ -1,6 +1,8 @@
 package com.martin.codestar.main;
 
+import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 
@@ -22,4 +24,8 @@ public class MainActivityTest {
         this.mPresenter = new MainPresenter(mView, mModel);
     }
 
+    @Test
+    public void shouldShowErrorWhenUserOneNull() {
+        Mockito.when(this.mView.getUserOne()).thenReturn("");
+    }
 }
