@@ -42,6 +42,7 @@
                 <ImageView
                     style="@style/avatar"
                     android:id="@+id/avatar_user_one"
+                    android:src="@drawable/ic_person_black"
                     android:contentDescription="@string/avatar_content_description"/>
                 <TextView
                     style="@style/label"
@@ -88,6 +89,7 @@
                 <ImageView
                     style="@style/avatar"
                     android:id="@+id/avatar_user_two"
+                    android:src="@drawable/ic_person_black"
                     android:contentDescription="@string/avatar_content_description"/>
                 <TextView
                     style="@style/label"
@@ -117,6 +119,7 @@
             android:text="@string/start" />
 
         <LinearLayout android:id="@+id/winner_view"
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -126,7 +129,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="@string/winner"/>
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/avatar_winner"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:src="@drawable/ic_person_black"
+                android:padding="4dp"/>
+            <TextView
+                android:id="@+id/label_user_winner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                tools:text="User"/>
         </LinearLayout>
 
     </LinearLayout>
