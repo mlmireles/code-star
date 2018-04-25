@@ -221,4 +221,62 @@ public class MainActivityTest {
 
         Mockito.verify(this.mView).showUserHasNoReposError(USER_ONE);
     }
+
+    @Test
+    public void shouldShowCodeStarWinner() {
+        ArgumentCaptor<IMainModelCallback.Users> callbackCaptorOne
+                = ArgumentCaptor.forClass(IMainModelCallback.Users.class);
+        ArgumentCaptor<IMainModelCallback.Users> callbackCaptorTwo
+                = ArgumentCaptor.forClass(IMainModelCallback.Users.class);
+
+        Mockito.when(this.mView.getUserOne()).thenReturn(USER_ONE);
+        Mockito.when(this.mView.getUserTwo()).thenReturn(USER_TWO);
+
+        this.mPresenter.onClickStart();
+
+        Mockito.verify(this.mView).getUserOne();
+        Mockito.verify(this.mView).getUserTwo();
+        Mockito.verify(this.mView).showProgressBar();
+
+        Mockito.verify(this.mUserModel).getUser(
+                Mockito.eq(USER_ONE),
+                callbackCaptorOne.capture()
+        );
+        Mockito.verify(this.mUserModel).getUser(
+                Mockito.eq(USER_TWO),
+                callbackCaptorTwo.capture()
+        );
+
+        Mockito.when(this.mUserOne.getLogin()).thenReturn(USER_ONE);
+        callbackCaptorOne.getValue().onGetUserSuccess(mUserOne);
+        Mockito.when(this.mUserTwo.getLogin()).thenReturn(USER_TWO);
+        callbackCaptorTwo.getValue().onGetUserSuccess(mUserTwo);
+
+        Mockito.verify(this.mView).onUsersSuccess();
+        Mockito.verify(this.mView).showUsersInfo(this.mUserOne, this.mUserTwo);
+
+        ArgumentCaptor<IMainModelCallback.Repos> callbackReposOne
+                = ArgumentCaptor.forClass(IMainModelCallback.Repos.class);
+        ArgumentCaptor<IMainModelCallback.Repos> callbackReposTwo
+                = ArgumentCaptor.forClass(IMainModelCallback.Repos.class);
+
+        //this.mPresenter.getRepositories();
+        Mockito.verify(this.mReposModel).getUserRepos(
+                Mockito.eq(USER_ONE),
+                callbackReposOne.capture()
+        );
+        Mockito.verify(this.mReposModel).getUserRepos(
+                Mockito.eq(USER_TWO),
+                callbackReposTwo.capture()
+        );
+
+        this.mReposOne = new RepositoriesResponse();
+        this.mReposOne.repositories = new ArrayList<>();
+        this.mReposTwo = new RepositoriesResponse();
+        this.mReposTwo.repositories = new ArrayList<>();
+
+        callbackReposOne.getValue().onGetReposSuccess(this.mReposOne);
+        callbackReposTwo.getValue().onGetReposSuccess(this.mReposTwo);
+
+    }
 }
