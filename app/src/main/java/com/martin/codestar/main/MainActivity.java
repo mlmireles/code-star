@@ -6,11 +6,14 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.martin.codestar.API.models.User;
 import com.martin.codestar.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 
@@ -36,6 +39,15 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     TextInputEditText mEditUserTwo;
     @BindView(R.id.progress_main)
     ProgressBar mProgressBar;
+
+    @BindView(R.id.user_one_info)
+    RelativeLayout mUserOneInfo;
+    @BindView(R.id.avatar_user_one)
+    ImageView mUserOneAvatar;
+    @BindView(R.id.label_main_user_one_name)
+    TextView mUserOneName;
+    @BindView(R.id.label_main_user_one_company)
+    TextView mUserOneCompany;
 
     @BindString(R.string.user_one)
     String userOneField;
@@ -137,6 +149,20 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     @Override
     public void showUsersInfo(User userOne, User userTwo) {
+        this.showUser(userOne, this.mEditUserOne, this.mUserOneInfo, this.mUserOneAvatar,
+                this.mUserOneName, this.mUserOneCompany);
+    }
 
+    private void showUser(User user, TextInputEditText input, RelativeLayout layout,
+                          ImageView avatar, TextView name, TextView company) {
+        input.setEnabled(false);
+        name.setText(user.getName());
+        company.setText(user.getCompany());
+        Picasso.with(this)
+                .load(user.getAvatar_url())
+                .error(R.drawable.ic_person_black)
+                .into(avatar);
+
+        layout.setVisibility(View.VISIBLE);
     }
 }

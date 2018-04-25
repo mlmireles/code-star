@@ -46,14 +46,14 @@
                     android:contentDescription="@string/avatar_content_description"/>
                 <TextView
                     style="@style/label"
-                    android:id="@+id/label_main_name"
+                    android:id="@+id/label_main_user_one_name"
                     android:layout_toEndOf="@id/avatar_user_one"
                     tools:text="Name"/>
                 <TextView
                     style="@style/label"
-                    android:id="@+id/label_main_company"
+                    android:id="@+id/label_main_user_one_company"
                     android:layout_toEndOf="@id/avatar_user_one"
-                    android:layout_below="@id/label_main_name"
+                    android:layout_below="@id/label_main_user_one_name"
                     tools:text="Company"/>
                 <TextView
                     style="@style/label"
