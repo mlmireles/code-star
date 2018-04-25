@@ -1,6 +1,6 @@
 package com.martin.codestar.main;
 
-/**
+import com.martin.codestar.API.models.User; /**
  * Created by Martín on 23/04/2018
  *
  */
@@ -25,4 +25,6 @@ public interface IMainView {
     void showServerError();
 
     void onUsersSuccess();
+
+    void showUsersInfo(User userOne, User userTwo);
 }

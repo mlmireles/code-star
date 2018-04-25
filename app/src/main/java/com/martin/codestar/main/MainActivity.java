@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.martin.codestar.API.models.User;
 import com.martin.codestar.R;
 
 import java.util.Locale;
@@ -132,5 +133,10 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     private void removeTextInputLayoutError(TextInputLayout input) {
         input.setError(null);
         input.setErrorEnabled(false);
+    }
+
+    @Override
+    public void showUsersInfo(User userOne, User userTwo) {
+
     }
 }

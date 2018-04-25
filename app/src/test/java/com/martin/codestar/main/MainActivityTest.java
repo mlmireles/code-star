@@ -152,10 +152,7 @@ public class MainActivityTest {
         callbackCaptorTwo.getValue().onGetUserSuccess(mUserTwo);
 
         Mockito.verify(this.mView).onUsersSuccess();
+        Mockito.verify(this.mView).showUsersInfo(this.mUserOne, this.mUserTwo);
     }
 
-    @Test
-    public void shouldShowUsersInfo() {
-
-    }
 }
