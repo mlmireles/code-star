@@ -1,5 +1,6 @@
 package com.martin.codestar.main;
 
+import com.martin.codestar.API.models.RepositoriesResponse;
 import com.martin.codestar.API.models.User;
 
 /**
@@ -13,6 +14,14 @@ public interface IMainModelCallback {
         void onGetUserSuccess(User user);
 
         void onGetUserError(String username);
+
+        void onGetServerError();
+    }
+
+    interface Repos {
+        void onGetReposSuccess(RepositoriesResponse repos);
+
+        void onGetReposError(String username);
 
         void onGetServerError();
     }

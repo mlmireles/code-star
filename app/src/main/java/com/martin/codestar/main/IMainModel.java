@@ -12,6 +12,6 @@ public interface IMainModel {
     }
 
     interface Repos {
-        void getUserRepos(String username, IMainModelCallback callback);
+        void getUserRepos(String username, IMainModelCallback.Repos callback);
     }
 }

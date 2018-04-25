@@ -1,6 +1,7 @@
 package com.martin.codestar.main;
 
-import com.martin.codestar.API.ApiInterface;
+import android.support.v4.media.session.IMediaControllerCallback;
+
 import com.martin.codestar.API.models.User;
 
 import org.junit.Test;
@@ -24,7 +25,9 @@ public class MainActivityTest {
     @Mock
     private IMainView mView;
     @Mock
-    private IMainModel.Users mModel;
+    private IMainModel.Users mUserModel;
+    @Mock
+    private IMainModel.Repos mReposModel;
     @Mock
     private User mUserOne;
     @Mock
@@ -35,7 +38,7 @@ public class MainActivityTest {
     public MainActivityTest() {
         MockitoAnnotations.initMocks(this);
 
-        this.mPresenter = new MainPresenter(mView, mModel);
+        this.mPresenter = new MainPresenter(mView, mUserModel);
     }
 
     @Test
@@ -85,7 +88,7 @@ public class MainActivityTest {
         Mockito.verify(this.mView).getUserTwo();
         Mockito.verify(this.mView).showProgressBar();
 
-        Mockito.verify(this.mModel).getUser(
+        Mockito.verify(this.mUserModel).getUser(
                 Mockito.eq(USER_BAD),
                 callbackCaptor.capture()
         );
@@ -110,7 +113,7 @@ public class MainActivityTest {
         Mockito.verify(this.mView).getUserTwo();
         Mockito.verify(this.mView).showProgressBar();
 
-        Mockito.verify(this.mModel).getUser(
+        Mockito.verify(this.mUserModel).getUser(
                 Mockito.eq(USER_ONE),
                 callbackCaptor.capture()
         );
@@ -137,11 +140,11 @@ public class MainActivityTest {
         Mockito.verify(this.mView).getUserTwo();
         Mockito.verify(this.mView).showProgressBar();
 
-        Mockito.verify(this.mModel).getUser(
+        Mockito.verify(this.mUserModel).getUser(
                 Mockito.eq(USER_ONE),
                 callbackCaptorOne.capture()
         );
-        Mockito.verify(this.mModel).getUser(
+        Mockito.verify(this.mUserModel).getUser(
                 Mockito.eq(USER_TWO),
                 callbackCaptorTwo.capture()
         );
@@ -171,11 +174,11 @@ public class MainActivityTest {
         Mockito.verify(this.mView).getUserTwo();
         Mockito.verify(this.mView).showProgressBar();
 
-        Mockito.verify(this.mModel).getUser(
+        Mockito.verify(this.mUserModel).getUser(
                 Mockito.eq(USER_ONE),
                 callbackCaptorOne.capture()
         );
-        Mockito.verify(this.mModel).getUser(
+        Mockito.verify(this.mUserModel).getUser(
                 Mockito.eq(USER_TWO),
                 callbackCaptorTwo.capture()
         );
@@ -188,10 +191,19 @@ public class MainActivityTest {
         Mockito.verify(this.mView).onUsersSuccess();
         Mockito.verify(this.mView).showUsersInfo(this.mUserOne, this.mUserTwo);
 
+        ArgumentCaptor<IMainModelCallback.Repos> callbackReposOne
+                = ArgumentCaptor.forClass(IMainModelCallback.Repos.class);
+        ArgumentCaptor<IMainModelCallback.Repos> callbackReposTwo
+                = ArgumentCaptor.forClass(IMainModelCallback.Repos.class);
+
         //this.mPresenter.starCount();
-        Mockito.verify(this.mModel).getUserRepos(
+        Mockito.verify(this.mReposModel).getUserRepos(
                 Mockito.eq(USER_ONE),
-                callbackCaptorOne.capture()
+                callbackReposOne.capture()
+        );
+        Mockito.verify(this.mReposModel).getUserRepos(
+                Mockito.eq(USER_TWO),
+                callbackReposTwo.capture()
         );
 
     }
