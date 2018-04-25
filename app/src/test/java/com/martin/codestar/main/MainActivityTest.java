@@ -1,7 +1,5 @@
 package com.martin.codestar.main;
 
-import android.support.v4.media.session.IMediaControllerCallback;
-
 import com.martin.codestar.API.models.User;
 
 import org.junit.Test;

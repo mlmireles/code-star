@@ -1,5 +1,6 @@
 package com.martin.codestar.main;
 
+import com.martin.codestar.API.models.RepositoriesResponse;
 import com.martin.codestar.API.models.User;
 
 /**
@@ -7,7 +8,8 @@ import com.martin.codestar.API.models.User;
  *
  */
 
-public class MainPresenter implements IMainPresenter, IMainModelCallback.Users {
+public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
+        IMainModelCallback.Repos {
 
     private User mUserOne, mUserTwo;
 
@@ -60,6 +62,16 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users {
     public void onGetUserError(String username) {
         this.mView.hideProgressBar();
         this.mView.showUserNotFoundError(username);
+    }
+
+    @Override
+    public void onGetReposSuccess(RepositoriesResponse repos) {
+
+    }
+
+    @Override
+    public void onGetReposError(String username) {
+
     }
 
     @Override
