@@ -1,5 +1,6 @@
 package com.martin.codestar.API;
 
+import com.martin.codestar.API.models.RepositoriesResponse;
 import com.martin.codestar.API.models.User;
 
 import retrofit2.Call;
@@ -13,9 +14,13 @@ public interface ApiInterface {
      */
     abstract class USERS {
         private static final String PATH = "/users/{username}";
+        private static final String PATH_REPOS = "/users/{username}/repos";
 
-        public static final String PARAM_USERNAME = "username";
+        static final String PARAM_USERNAME = "username";
     }
     @GET(USERS.PATH)
     Call<User> getUser(@Path(USERS.PARAM_USERNAME) String username);
+
+    @GET(USERS.PATH_REPOS)
+    Call<RepositoriesResponse> getUserRepos(@Path(USERS.PARAM_USERNAME) String username);
 }
