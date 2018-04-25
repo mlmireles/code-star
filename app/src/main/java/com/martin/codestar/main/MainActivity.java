@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     @Override
     public void showServerError() {
+        this.mInfo.setVisibility(View.VISIBLE);
         this.mInfo.setText(R.string.error_server);
         this.mInfo.setTextColor(Color.RED);
     }
@@ -123,5 +124,13 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @Override
     public void onUsersSuccess() {
         this.hideProgressBar();
+        this.mInfo.setVisibility(View.GONE);
+        this.removeTextInputLayoutError(this.mLabelUserOne);
+        this.removeTextInputLayoutError(this.mLabelUserTwo);
+    }
+
+    private void removeTextInputLayoutError(TextInputLayout input) {
+        input.setError(null);
+        input.setErrorEnabled(false);
     }
 }

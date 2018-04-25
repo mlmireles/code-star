@@ -153,4 +153,9 @@ public class MainActivityTest {
 
         Mockito.verify(this.mView).onUsersSuccess();
     }
+
+    @Test
+    public void shouldShowUsersInfo() {
+
+    }
 }
