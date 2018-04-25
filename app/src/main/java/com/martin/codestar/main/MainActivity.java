@@ -48,6 +48,14 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     TextView mUserOneName;
     @BindView(R.id.label_main_user_one_company)
     TextView mUserOneCompany;
+    @BindView(R.id.user_two_info)
+    RelativeLayout mUserTwoInfo;
+    @BindView(R.id.avatar_user_two)
+    ImageView mUserTwoAvatar;
+    @BindView(R.id.label_main_user_two_name)
+    TextView mUserTwoName;
+    @BindView(R.id.label_main_user_two_company)
+    TextView mUserTwoCompany;
 
     @BindString(R.string.user_one)
     String userOneField;
@@ -151,6 +159,8 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     public void showUsersInfo(User userOne, User userTwo) {
         this.showUser(userOne, this.mEditUserOne, this.mUserOneInfo, this.mUserOneAvatar,
                 this.mUserOneName, this.mUserOneCompany);
+        this.showUser(userTwo, this.mEditUserTwo, this.mUserTwoInfo, this.mUserTwoAvatar,
+                this.mUserTwoName, this.mUserTwoCompany);
     }
 
     private void showUser(User user, TextInputEditText input, RelativeLayout layout,
