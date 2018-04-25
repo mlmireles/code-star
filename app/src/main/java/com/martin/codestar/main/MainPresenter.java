@@ -12,14 +12,16 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
         IMainModelCallback.Repos {
 
     private User mUserOne, mUserTwo;
+    private int reposResponseCode;
 
     private IMainView mView;
-    private IMainModel.Users mModel;
+    private IMainModel.Users mUserModel;
+    private IMainModel.Repos mReposModel;
 
-    MainPresenter(IMainView mView, IMainModel.Users mModel) {
-
+    MainPresenter(IMainView mView, IMainModel.Users mUserModel, IMainModel.Repos mReposModel) {
         this.mView = mView;
-        this.mModel = mModel;
+        this.mUserModel = mUserModel;
+        this.mReposModel = mReposModel;
     }
 
     @Override
@@ -42,8 +44,8 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
         }
 
         this.mView.showProgressBar();
-        this.mModel.getUser(userOne, this);
-        this.mModel.getUser(userTwo, this);
+        this.mUserModel.getUser(userOne, this);
+        this.mUserModel.getUser(userTwo, this);
     }
 
     @Override
@@ -71,7 +73,8 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
 
     @Override
     public void onGetReposError(String username) {
-
+        this.mView.hideProgressBar();
+        this.mView.showUserHasNoReposError(username);
     }
 
     @Override

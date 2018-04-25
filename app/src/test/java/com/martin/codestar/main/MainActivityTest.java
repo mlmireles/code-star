@@ -36,7 +36,7 @@ public class MainActivityTest {
     public MainActivityTest() {
         MockitoAnnotations.initMocks(this);
 
-        this.mPresenter = new MainPresenter(mView, mUserModel);
+        this.mPresenter = new MainPresenter(mView, mUserModel, mReposModel);
     }
 
     @Test
@@ -204,5 +204,8 @@ public class MainActivityTest {
                 callbackReposTwo.capture()
         );
 
+        callbackReposOne.getValue().onGetReposError(USER_ONE);
+
+        Mockito.verify(this.mView).showUserHasNoReposError();
     }
 }

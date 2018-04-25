@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     String errorSameUser;
     @BindString(R.string.user_not_found)
     String errorUserNotFound;
+    @BindString(R.string.error_user_no_repositories)
+    String errorUserNoRepos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,5 +179,12 @@ public class MainActivity extends AppCompatActivity implements IMainView {
                 .into(avatar);
 
         layout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showUserHasNoReposError(String username) {
+        this.mInfo.setText(String.format(Locale.ENGLISH, errorUserNoRepos, username));
+        this.mInfo.setTextColor(Color.RED);
+        this.mInfo.setVisibility(View.VISIBLE);
     }
 }

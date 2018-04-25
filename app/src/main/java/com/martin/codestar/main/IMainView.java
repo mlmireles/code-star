@@ -28,4 +28,6 @@ public interface IMainView {
     void onUsersSuccess();
 
     void showUsersInfo(User userOne, User userTwo);
+
+    void showUserHasNoReposError(String username);
 }

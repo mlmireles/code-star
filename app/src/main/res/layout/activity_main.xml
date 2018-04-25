@@ -118,6 +118,15 @@
             android:layout_marginTop="@dimen/button_start_margin"
             android:text="@string/start" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/button_start_margin"
+            android:textColor="@color/colorAccent"
+            android:visibility="gone"
+            tools:text="User one does not have any public repos"/>
+
         <LinearLayout android:id="@+id/winner_view"
             android:orientation="vertical"
             android:layout_width="wrap_content"
