@@ -24,7 +24,7 @@ public class MainActivityTest {
     @Mock
     private IMainView mView;
     @Mock
-    private IMainModel mModel;
+    private IMainModel.Users mModel;
     @Mock
     private User mUserOne;
     @Mock
@@ -73,8 +73,8 @@ public class MainActivityTest {
 
     @Test
     public void shouldShowErrorWhenUserNotFound() {
-        ArgumentCaptor<IMainModelCallback> callbackCaptor
-                = ArgumentCaptor.forClass(IMainModelCallback.class);
+        ArgumentCaptor<IMainModelCallback.Users> callbackCaptor
+                = ArgumentCaptor.forClass(IMainModelCallback.Users.class);
 
         Mockito.when(this.mView.getUserTwo()).thenReturn(USER_ONE);
         Mockito.when(this.mView.getUserOne()).thenReturn(USER_BAD);
@@ -98,8 +98,8 @@ public class MainActivityTest {
 
     @Test
     public void shouldShowAServerError() {
-        ArgumentCaptor<IMainModelCallback> callbackCaptor
-                = ArgumentCaptor.forClass(IMainModelCallback.class);
+        ArgumentCaptor<IMainModelCallback.Users> callbackCaptor
+                = ArgumentCaptor.forClass(IMainModelCallback.Users.class);
 
         Mockito.when(this.mView.getUserOne()).thenReturn(USER_ONE);
         Mockito.when(this.mView.getUserTwo()).thenReturn(USER_TWO);
@@ -123,10 +123,10 @@ public class MainActivityTest {
 
     @Test
     public void shouldCallOnGetUserSuccess() {
-        ArgumentCaptor<IMainModelCallback> callbackCaptorOne
-                = ArgumentCaptor.forClass(IMainModelCallback.class);
-        ArgumentCaptor<IMainModelCallback> callbackCaptorTwo
-                = ArgumentCaptor.forClass(IMainModelCallback.class);
+        ArgumentCaptor<IMainModelCallback.Users> callbackCaptorOne
+                = ArgumentCaptor.forClass(IMainModelCallback.Users.class);
+        ArgumentCaptor<IMainModelCallback.Users> callbackCaptorTwo
+                = ArgumentCaptor.forClass(IMainModelCallback.Users.class);
 
         Mockito.when(this.mView.getUserOne()).thenReturn(USER_ONE);
         Mockito.when(this.mView.getUserTwo()).thenReturn(USER_TWO);
@@ -155,4 +155,44 @@ public class MainActivityTest {
         Mockito.verify(this.mView).showUsersInfo(this.mUserOne, this.mUserTwo);
     }
 
+    @Test
+    public void shouldShowErrorWhenUserHasNoPublicRepos() {
+        ArgumentCaptor<IMainModelCallback.Users> callbackCaptorOne
+                = ArgumentCaptor.forClass(IMainModelCallback.Users.class);
+        ArgumentCaptor<IMainModelCallback.Users> callbackCaptorTwo
+                = ArgumentCaptor.forClass(IMainModelCallback.Users.class);
+
+        Mockito.when(this.mView.getUserOne()).thenReturn(USER_ONE);
+        Mockito.when(this.mView.getUserTwo()).thenReturn(USER_TWO);
+
+        this.mPresenter.onClickStart();
+
+        Mockito.verify(this.mView).getUserOne();
+        Mockito.verify(this.mView).getUserTwo();
+        Mockito.verify(this.mView).showProgressBar();
+
+        Mockito.verify(this.mModel).getUser(
+                Mockito.eq(USER_ONE),
+                callbackCaptorOne.capture()
+        );
+        Mockito.verify(this.mModel).getUser(
+                Mockito.eq(USER_TWO),
+                callbackCaptorTwo.capture()
+        );
+
+        Mockito.when(this.mUserOne.getLogin()).thenReturn(USER_ONE);
+        callbackCaptorOne.getValue().onGetUserSuccess(mUserOne);
+        Mockito.when(this.mUserTwo.getLogin()).thenReturn(USER_TWO);
+        callbackCaptorTwo.getValue().onGetUserSuccess(mUserTwo);
+
+        Mockito.verify(this.mView).onUsersSuccess();
+        Mockito.verify(this.mView).showUsersInfo(this.mUserOne, this.mUserTwo);
+
+        //this.mPresenter.starCount();
+        Mockito.verify(this.mModel).getUserRepos(
+                Mockito.eq(USER_ONE),
+                callbackCaptorOne.capture()
+        );
+
+    }
 }

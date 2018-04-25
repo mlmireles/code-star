@@ -6,5 +6,12 @@ package com.martin.codestar.main;
  */
 
 public interface IMainModel {
-    void getUser(String username, IMainModelCallback callback);
+
+    interface Users {
+        void getUser(String username, IMainModelCallback.Users callback);
+    }
+
+    interface Repos {
+        void getUserRepos(String username, IMainModelCallback callback);
+    }
 }

@@ -6,8 +6,6 @@ import android.util.Log;
 import com.martin.codestar.API.ApiAdapter;
 import com.martin.codestar.API.models.User;
 
-import java.util.Locale;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,15 +16,15 @@ import retrofit2.Response;
  *
  */
 
-public class MainModel implements IMainModel , Callback<User> {
+public class MainUserModel implements IMainModel.Users, Callback<User> {
 
-    private static final String TAG = "MainModel";
+    private static final String TAG = "MainUserModel";
 
-    private IMainModelCallback mCallback;
+    private IMainModelCallback.Users mCallback;
     private static String sUsername;
 
     @Override
-    public void getUser(String username, IMainModelCallback listener) {
+    public void getUser(String username, IMainModelCallback.Users listener) {
         this.mCallback = listener;
         sUsername = username;
 

@@ -7,14 +7,14 @@ import com.martin.codestar.API.models.User;
  *
  */
 
-public class MainPresenter implements IMainPresenter, IMainModelCallback {
+public class MainPresenter implements IMainPresenter, IMainModelCallback.Users {
 
     private User mUserOne, mUserTwo;
 
     private IMainView mView;
-    private IMainModel mModel;
+    private IMainModel.Users mModel;
 
-    MainPresenter(IMainView mView, IMainModel mModel) {
+    MainPresenter(IMainView mView, IMainModel.Users mModel) {
 
         this.mView = mView;
         this.mModel = mModel;
@@ -52,6 +52,7 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback {
             this.mUserTwo = user;
             this.mView.onUsersSuccess();
             this.mView.showUsersInfo(this.mUserOne, this.mUserTwo);
+            this.starCount();
         }
     }
 
@@ -65,5 +66,10 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback {
     public void onGetServerError() {
         this.mView.hideProgressBar();
         this.mView.showServerError();
+    }
+
+    @Override
+    public void starCount() {
+
     }
 }

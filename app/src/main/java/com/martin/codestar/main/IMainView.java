@@ -6,6 +6,7 @@ import com.martin.codestar.API.models.User; /**
  */
 
 public interface IMainView {
+
     String getUserOne();
 
     void showUserOneNullError();
