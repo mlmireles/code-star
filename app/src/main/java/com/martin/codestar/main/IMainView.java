@@ -23,4 +23,6 @@ public interface IMainView {
     void hideProgressBar();
 
     void showServerError();
+
+    void onUsersSuccess();
 }

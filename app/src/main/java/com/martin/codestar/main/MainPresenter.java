@@ -9,6 +9,8 @@ import com.martin.codestar.API.models.User;
 
 public class MainPresenter implements IMainPresenter, IMainModelCallback {
 
+    private User mUserOne, mUserTwo;
+
     private IMainView mView;
     private IMainModel mModel;
 
@@ -44,7 +46,12 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback {
 
     @Override
     public void onGetUserSuccess(User user) {
-
+        if (user.getLogin().equals(this.mView.getUserOne())) {
+            this.mUserOne = user;
+        } else {
+            this.mUserTwo = user;
+            this.mView.onUsersSuccess();
+        }
     }
 
     @Override

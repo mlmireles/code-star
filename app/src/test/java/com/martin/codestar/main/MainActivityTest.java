@@ -1,5 +1,8 @@
 package com.martin.codestar.main;
 
+import com.martin.codestar.API.ApiInterface;
+import com.martin.codestar.API.models.User;
+
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
@@ -22,6 +25,10 @@ public class MainActivityTest {
     private IMainView mView;
     @Mock
     private IMainModel mModel;
+    @Mock
+    private User mUserOne;
+    @Mock
+    private User mUserTwo;
 
     private IMainPresenter mPresenter;
 
@@ -112,5 +119,38 @@ public class MainActivityTest {
 
         Mockito.verify(this.mView).hideProgressBar();
         Mockito.verify(this.mView).showServerError();
+    }
+
+    @Test
+    public void shouldCallOnGetUserSuccess() {
+        ArgumentCaptor<IMainModelCallback> callbackCaptorOne
+                = ArgumentCaptor.forClass(IMainModelCallback.class);
+        ArgumentCaptor<IMainModelCallback> callbackCaptorTwo
+                = ArgumentCaptor.forClass(IMainModelCallback.class);
+
+        Mockito.when(this.mView.getUserOne()).thenReturn(USER_ONE);
+        Mockito.when(this.mView.getUserTwo()).thenReturn(USER_TWO);
+
+        this.mPresenter.onClickStart();
+
+        Mockito.verify(this.mView).getUserOne();
+        Mockito.verify(this.mView).getUserTwo();
+        Mockito.verify(this.mView).showProgressBar();
+
+        Mockito.verify(this.mModel).getUser(
+                Mockito.eq(USER_ONE),
+                callbackCaptorOne.capture()
+        );
+        Mockito.verify(this.mModel).getUser(
+                Mockito.eq(USER_TWO),
+                callbackCaptorTwo.capture()
+        );
+
+        Mockito.when(this.mUserOne.getLogin()).thenReturn(USER_ONE);
+        callbackCaptorOne.getValue().onGetUserSuccess(mUserOne);
+        Mockito.when(this.mUserTwo.getLogin()).thenReturn(USER_TWO);
+        callbackCaptorTwo.getValue().onGetUserSuccess(mUserTwo);
+
+        Mockito.verify(this.mView).onUsersSuccess();
     }
 }

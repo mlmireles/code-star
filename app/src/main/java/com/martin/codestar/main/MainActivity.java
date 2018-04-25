@@ -119,4 +119,9 @@ public class MainActivity extends AppCompatActivity implements IMainView {
             this.setTextInputLayoutError(error, this.mLabelUserTwo);
         }
     }
+
+    @Override
+    public void onUsersSuccess() {
+        this.hideProgressBar();
+    }
 }
