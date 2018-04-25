@@ -51,6 +51,7 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback {
         } else {
             this.mUserTwo = user;
             this.mView.onUsersSuccess();
+            this.mView.showUsersInfo(this.mUserOne, this.mUserTwo);
         }
     }
 

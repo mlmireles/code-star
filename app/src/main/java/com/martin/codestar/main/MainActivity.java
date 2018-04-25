@@ -6,6 +6,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     TextInputLayout mLabelUserTwo;
     @BindView(R.id.input_user_two)
     TextInputEditText mEditUserTwo;
+    @BindView(R.id.button_start)
+    Button mButtonStart;
     @BindView(R.id.progress_main)
     ProgressBar mProgressBar;
 
@@ -144,8 +147,8 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     @Override
     public void onUsersSuccess() {
-        this.hideProgressBar();
         this.mInfo.setVisibility(View.GONE);
+        this.mButtonStart.setVisibility(View.GONE);
         this.removeTextInputLayoutError(this.mLabelUserOne);
         this.removeTextInputLayoutError(this.mLabelUserTwo);
     }
