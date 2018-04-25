@@ -9,5 +9,5 @@ public interface IMainPresenter {
 
     void onClickStart();
 
-    void starCount();
+    void getRepositories();
 }

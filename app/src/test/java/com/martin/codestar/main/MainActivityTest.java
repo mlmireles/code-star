@@ -194,7 +194,7 @@ public class MainActivityTest {
         ArgumentCaptor<IMainModelCallback.Repos> callbackReposTwo
                 = ArgumentCaptor.forClass(IMainModelCallback.Repos.class);
 
-        //this.mPresenter.starCount();
+        //this.mPresenter.getRepositories();
         Mockito.verify(this.mReposModel).getUserRepos(
                 Mockito.eq(USER_ONE),
                 callbackReposOne.capture()
@@ -206,6 +206,6 @@ public class MainActivityTest {
 
         callbackReposOne.getValue().onGetReposError(USER_ONE);
 
-        Mockito.verify(this.mView).showUserHasNoReposError();
+        Mockito.verify(this.mView).showUserHasNoReposError(USER_ONE);
     }
 }

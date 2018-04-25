@@ -12,7 +12,8 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
         IMainModelCallback.Repos {
 
     private User mUserOne, mUserTwo;
-    private int reposResponseCode;
+    private RepositoriesResponse mReposOne, mReposTwo;
+    private boolean isRepoEmpty;
 
     private IMainView mView;
     private IMainModel.Users mUserModel;
@@ -22,6 +23,8 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
         this.mView = mView;
         this.mUserModel = mUserModel;
         this.mReposModel = mReposModel;
+
+        this.isRepoEmpty = false;
     }
 
     @Override
@@ -56,7 +59,7 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
             this.mUserTwo = user;
             this.mView.onUsersSuccess();
             this.mView.showUsersInfo(this.mUserOne, this.mUserTwo);
-            this.starCount();
+            this.getRepositories();
         }
     }
 
@@ -68,7 +71,11 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
 
     @Override
     public void onGetReposSuccess(RepositoriesResponse repos) {
-
+        if (this.mReposOne == null) {
+            this.mReposOne = repos;
+        } else {
+            this.mReposTwo = repos;
+        }
     }
 
     @Override
@@ -84,7 +91,8 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
     }
 
     @Override
-    public void starCount() {
-
+    public void getRepositories() {
+        this.mReposModel.getUserRepos(this.mUserOne.getLogin(), this);
+        this.mReposModel.getUserRepos(this.mUserTwo.getLogin(), this);
     }
 }
