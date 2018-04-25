@@ -1,5 +1,7 @@
 package com.martin.codestar.main;
 
+import com.martin.codestar.API.models.RepositoriesResponse;
+import com.martin.codestar.API.models.Repository;
 import com.martin.codestar.API.models.User;
 
 import org.junit.Test;
@@ -7,6 +9,8 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
 
 
 /**
@@ -30,6 +34,9 @@ public class MainActivityTest {
     private User mUserOne;
     @Mock
     private User mUserTwo;
+
+    private RepositoriesResponse mReposOne;
+    private RepositoriesResponse mReposTwo;
 
     private IMainPresenter mPresenter;
 
@@ -204,7 +211,13 @@ public class MainActivityTest {
                 callbackReposTwo.capture()
         );
 
-        callbackReposOne.getValue().onGetReposError(USER_ONE);
+        this.mReposOne = new RepositoriesResponse();
+        this.mReposOne.repositories = new ArrayList<>();
+        this.mReposTwo = new RepositoriesResponse();
+        this.mReposTwo.repositories = new ArrayList<>();
+
+        callbackReposOne.getValue().onGetReposSuccess(this.mReposOne);
+        callbackReposTwo.getValue().onGetReposSuccess(this.mReposTwo);
 
         Mockito.verify(this.mView).showUserHasNoReposError(USER_ONE);
     }

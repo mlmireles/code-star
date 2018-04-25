@@ -75,6 +75,7 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
             this.mReposOne = repos;
         } else {
             this.mReposTwo = repos;
+            this.starCount();
         }
     }
 
@@ -94,5 +95,18 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
     public void getRepositories() {
         this.mReposModel.getUserRepos(this.mUserOne.getLogin(), this);
         this.mReposModel.getUserRepos(this.mUserTwo.getLogin(), this);
+    }
+
+    @Override
+    public void starCount() {
+        if (this.mReposOne.repositories.size() == 0) {
+            this.mView.showUserHasNoReposError(this.mUserOne.getLogin());
+            return;
+        }
+
+        if (this.mReposTwo.repositories.size() == 0) {
+            this.mView.showUserHasNoReposError(this.mUserTwo.getLogin());
+            return;
+        }
     }
 }

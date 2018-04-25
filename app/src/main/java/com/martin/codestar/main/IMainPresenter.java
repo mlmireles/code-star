@@ -10,4 +10,6 @@ public interface IMainPresenter {
     void onClickStart();
 
     void getRepositories();
+
+    void starCount();
 }
