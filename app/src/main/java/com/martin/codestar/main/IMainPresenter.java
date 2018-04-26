@@ -18,4 +18,6 @@ public interface IMainPresenter {
     void onClickFab();
 
     void onClickUserOneInfo();
+
+    void onClickUserTwoInfo();
 }

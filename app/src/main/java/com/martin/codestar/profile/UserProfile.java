@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.martin.codestar.R;
 import com.squareup.picasso.Picasso;
@@ -14,6 +15,7 @@ import butterknife.ButterKnife;
 
 public class UserProfile extends AppCompatActivity {
 
+    public static final String PARAM_USER = "user";
     public static final String PARAM_AVATAR = "avatar";
     public static final String PARAM_NAME = "name";
     public static final String PARAM_EMAIL = "email";
@@ -67,6 +69,10 @@ public class UserProfile extends AppCompatActivity {
         this.mRepos.setText(intent.getStringExtra(PARAM_REPOS));
         this.mFollowers.setText(intent.getStringExtra(PARAM_FOLLOWERS));
         this.mFollowing.setText(intent.getStringExtra(PARAM_FOLLOWING));
+
+        Toolbar toolbar = new Toolbar(this);
+        toolbar.setTitle(intent.getStringExtra(PARAM_USER));
+        this.setActionBar(toolbar);
     }
 
 }

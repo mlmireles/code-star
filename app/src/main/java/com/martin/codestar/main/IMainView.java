@@ -40,4 +40,6 @@ public interface IMainView {
     void showWinner();
 
     void launchRepoListActivity();
+
+    void launchUserProfileactivity(User user);
 }

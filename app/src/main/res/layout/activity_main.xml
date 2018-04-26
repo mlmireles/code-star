@@ -42,11 +42,16 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/label_user_one"
                     android:layout_marginBottom="8dp"
-                    android:visibility="gone">
+                    android:clickable="true"
+                    android:visibility="gone"
+                    android:focusable="true">
 
                     <ImageView
                         style="@style/avatar"
                         android:id="@+id/avatar_user_one"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="onUserOneInfoClick"
                         android:src="@drawable/ic_person_black"
                         android:contentDescription="@string/avatar_content_description"/>
                     <TextView
@@ -60,12 +65,6 @@
                         android:layout_toEndOf="@id/avatar_user_one"
                         android:layout_below="@id/label_main_user_one_name"
                         tools:text="Company"/>
-                    <TextView
-                        style="@style/label"
-                        android:layout_toEndOf="@id/avatar_user_one"
-                        android:layout_alignBottom="@id/avatar_user_one"
-                        android:textSize="@dimen/label_info_size"
-                        android:text="@string/view_profile"/>
                 </RelativeLayout>
 
             </RelativeLayout>
@@ -89,13 +88,17 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/label_user_two"
                     android:layout_marginBottom="8dp"
-                    android:visibility="gone">
+                    android:clickable="true"
+                    android:visibility="gone"
+                    android:focusable="true">
 
                     <ImageView
                         style="@style/avatar"
                         android:id="@+id/avatar_user_two"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:src="@drawable/ic_person_black"
-                        android:contentDescription="@string/avatar_content_description"/>
+                        android:contentDescription="@string/avatar_content_description" />
                     <TextView
                         style="@style/label"
                         android:id="@+id/label_main_user_two_name"
@@ -107,12 +110,6 @@
                         android:layout_toEndOf="@id/avatar_user_two"
                         android:layout_below="@id/label_main_user_two_name"
                         tools:text="Company"/>
-                    <TextView
-                        style="@style/label"
-                        android:layout_toEndOf="@id/avatar_user_two"
-                        android:layout_alignBottom="@id/avatar_user_two"
-                        android:textSize="@dimen/label_info_size"
-                        android:text="@string/view_profile"/>
                 </RelativeLayout>
             </RelativeLayout>
 

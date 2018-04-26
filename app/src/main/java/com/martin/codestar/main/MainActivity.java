@@ -2,6 +2,7 @@ package com.martin.codestar.main;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.icu.lang.UProperty;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.martin.codestar.API.models.User;
 import com.martin.codestar.R;
 import com.martin.codestar.injector.Injector;
+import com.martin.codestar.profile.UserProfile;
 import com.martin.codestar.repos.RepoListActivity;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
@@ -103,6 +105,13 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
         this.mPresenter = new MainPresenter(this, Injector.provideMainUserModel(),
                 Injector.provideMainReposModel());
+
+        this.mUserOneAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.onClickUserOneInfo();
+            }
+        });
     }
 
     @OnClick(R.id.button_start)
@@ -115,9 +124,14 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         this.mPresenter.onClickFab();
     }
 
-    @OnClick(R.id.user_one_info)
-    public void onUserOneInfoClick() {
+    @OnClick(R.id.avatar_user_one)
+    public void onUserOneInfoClick(View view) {
         this.mPresenter.onClickUserOneInfo();
+    }
+
+    @OnClick(R.id.avatar_user_two)
+    public void onUserTwoInfoClick(View view) {
+        this.mPresenter.onClickUserTwoInfo();
     }
 
     private String getEditInput(TextInputLayout input, TextInputEditText edit) {
@@ -260,5 +274,21 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         intent.putExtra(RepoListActivity.PARAM_USER_TWO, this.getUserTwo());
 
         startActivity(intent);
+    }
+
+    @Override
+    public void launchUserProfileactivity(User user) {
+        Intent intent = new Intent(this, UserProfile.class);
+        intent.putExtra(UserProfile.PARAM_USER, user.getLogin());
+        intent.putExtra(UserProfile.PARAM_AVATAR, user.getAvatar_url());
+        intent.putExtra(UserProfile.PARAM_NAME, user.getName());
+        intent.putExtra(UserProfile.PARAM_EMAIL, user.getEmail());
+        intent.putExtra(UserProfile.PARAM_BIO, user.getBio());
+        intent.putExtra(UserProfile.PARAM_COMPANY, user.getCompany());
+        intent.putExtra(UserProfile.PARAM_LOCATION, user.getLocation());
+        intent.putExtra(UserProfile.PARAM_BLOG, user.getBlog());
+        intent.putExtra(UserProfile.PARAM_REPOS, String.valueOf(user.getPublic_repos()));
+        intent.putExtra(UserProfile.PARAM_FOLLOWERS, String.valueOf(user.getFollowers()));
+        intent.putExtra(UserProfile.PARAM_FOLLOWING, String.valueOf(user.getFollowing()));
     }
 }
