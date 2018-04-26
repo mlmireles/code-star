@@ -147,4 +147,9 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
         }
         return stars;
     }
+
+    @Override
+    public void onClickUserOneInfo() {
+        this.mView.launchUserProfileactivity(this.mUserOne);
+    }
 }

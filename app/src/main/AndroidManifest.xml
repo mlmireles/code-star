@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".repos.RepoListActivity"></activity>
+        <activity android:name=".repos.RepoListActivity" />
+        <activity android:name=".profile.UserProfile"></activity>
     </application>
 
 </manifest>

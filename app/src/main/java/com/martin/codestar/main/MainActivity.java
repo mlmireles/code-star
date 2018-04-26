@@ -115,6 +115,11 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         this.mPresenter.onClickFab();
     }
 
+    @OnClick(R.id.user_one_info)
+    public void onUserOneInfoClick() {
+        this.mPresenter.onClickUserOneInfo();
+    }
+
     private String getEditInput(TextInputLayout input, TextInputEditText edit) {
         input.setError(null);
         input.setErrorEnabled(false);

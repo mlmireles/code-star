@@ -16,4 +16,6 @@ public interface IMainPresenter {
     void compareStars();
 
     void onClickFab();
+
+    void onClickUserOneInfo();
 }
