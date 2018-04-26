@@ -277,6 +277,5 @@ public class MainActivityTest {
 
         callbackReposOne.getValue().onGetReposSuccess(this.mReposOne);
         callbackReposTwo.getValue().onGetReposSuccess(this.mReposTwo);
-
     }
 }
