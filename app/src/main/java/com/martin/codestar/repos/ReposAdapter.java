@@ -55,7 +55,7 @@ public class ReposAdapter extends BaseAdapter {
         }
 
         item.labelRepo.setText(repository.getName());
-        item.labelStars.setText(repository.getStargazers_count());
+        item.labelStars.setText(String.valueOf(repository.getStargazers_count()));
 
         return view;
     }
@@ -70,7 +70,7 @@ public class ReposAdapter extends BaseAdapter {
             ButterKnife.bind(this, view);
         }
     }
-    
+
     public void updateRepos(List<Repository> repos) {
         this.mRepositories.clear();
         this.notifyDataSetChanged();

@@ -33,7 +33,7 @@
                     android:layout_marginEnd="8dp"
                     android:orientation="vertical">
 
-                    <android.support.v7.widget.RecyclerView
+                    <ListView
                         android:id="@+id/list_user_one"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
@@ -44,7 +44,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <android.support.v7.widget.RecyclerView
+                    <ListView
                         android:id="@+id/list_user_two"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
