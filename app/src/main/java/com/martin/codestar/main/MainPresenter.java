@@ -1,6 +1,5 @@
 package com.martin.codestar.main;
 
-import com.martin.codestar.API.models.RepositoriesResponse;
 import com.martin.codestar.API.models.Repository;
 import com.martin.codestar.API.models.User;
 
@@ -15,7 +14,7 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
         IMainModelCallback.Repos {
 
     private User mUserOne, mUserTwo;
-    private RepositoriesResponse mReposOne, mReposTwo;
+    private List<Repository> mReposOne, mReposTwo;
 
     private IMainView mView;
     private IMainModel.Users mUserModel;
@@ -75,7 +74,13 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
     }
 
     @Override
-    public void onGetReposSuccess(RepositoriesResponse repos) {
+    public void getRepositories() {
+        this.mReposModel.getUserRepos(this.mUserOne.getLogin(), this);
+        this.mReposModel.getUserRepos(this.mUserTwo.getLogin(), this);
+    }
+
+    @Override
+    public void onGetReposSuccess(List<Repository> repos) {
         if (this.mReposOne == null) {
             this.mReposOne = repos;
         } else {
@@ -97,19 +102,13 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
     }
 
     @Override
-    public void getRepositories() {
-        this.mReposModel.getUserRepos(this.mUserOne.getLogin(), this);
-        this.mReposModel.getUserRepos(this.mUserTwo.getLogin(), this);
-    }
-
-    @Override
     public void starCount() {
-        if (this.mReposOne.getRepositories().size() == 0) {
+        if (this.mReposOne.size() == 0) {
             this.mView.showUserHasNoReposError(this.mUserOne.getLogin());
             return;
         }
 
-        if (this.mReposTwo.getRepositories().size() == 0) {
+        if (this.mReposTwo.size() == 0) {
             this.mView.showUserHasNoReposError(this.mUserTwo.getLogin());
             return;
         }
@@ -119,8 +118,8 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
 
     @Override
     public void compareStars() {
-        int starsOne = this.getStars(this.mReposOne.getRepositories());
-        int starsTwo = this.getStars(this.mReposTwo.getRepositories());
+        int starsOne = this.getStars(this.mReposOne);
+        int starsTwo = this.getStars(this.mReposTwo);
 
         if (starsOne == starsTwo) {
             this.mView.showTie();

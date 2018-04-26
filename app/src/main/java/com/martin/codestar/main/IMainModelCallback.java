@@ -1,7 +1,9 @@
 package com.martin.codestar.main;
 
-import com.martin.codestar.API.models.RepositoriesResponse;
+import com.martin.codestar.API.models.Repository;
 import com.martin.codestar.API.models.User;
+
+import java.util.List;
 
 /**
  * Created by Martín on 23/04/2018
@@ -19,7 +21,7 @@ public interface IMainModelCallback {
     }
 
     interface Repos {
-        void onGetReposSuccess(RepositoriesResponse repos);
+        void onGetReposSuccess(List<Repository> repos);
 
         void onGetReposError(String username);
 

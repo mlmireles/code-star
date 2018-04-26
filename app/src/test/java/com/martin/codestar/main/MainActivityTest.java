@@ -1,6 +1,5 @@
 package com.martin.codestar.main;
 
-import com.martin.codestar.API.models.RepositoriesResponse;
 import com.martin.codestar.API.models.Repository;
 import com.martin.codestar.API.models.User;
 
@@ -36,9 +35,9 @@ public class MainActivityTest {
     @Mock
     private User mUserTwo;
     @Mock
-    private RepositoriesResponse mReposOne;
+    private List<Repository> mReposOne;
     @Mock
-    private RepositoriesResponse mReposTwo;
+    private List<Repository> mReposTwo;
 
     private IMainPresenter mPresenter;
 
@@ -213,8 +212,8 @@ public class MainActivityTest {
                 callbackReposTwo.capture()
         );
 
-        Mockito.when(this.mReposOne.getRepositories()).thenReturn(new ArrayList<Repository>());
-        Mockito.when(this.mReposTwo.getRepositories()).thenReturn(new ArrayList<Repository>());
+        Mockito.when(this.mReposOne).thenReturn(new ArrayList<Repository>());
+        Mockito.when(this.mReposTwo).thenReturn(new ArrayList<Repository>());
 
         callbackReposOne.getValue().onGetReposSuccess(this.mReposOne);
         callbackReposTwo.getValue().onGetReposSuccess(this.mReposTwo);
@@ -291,7 +290,7 @@ public class MainActivityTest {
         c.setStargazers_count((int) Math.random());
         repos.add(c);
 
-        Mockito.when(this.mReposOne.getRepositories()).thenReturn(repos);
+        Mockito.when(this.mReposOne).thenReturn(repos);
 
         List<Repository> reposTwo = new ArrayList<>();
         Repository d = new Repository();
@@ -300,7 +299,7 @@ public class MainActivityTest {
         d.setLanguage("Go");
         d.setStargazers_count((int) Math.random());
         reposTwo.add(d);
-        Mockito.when(this.mReposTwo.getRepositories()).thenReturn(reposTwo);
+        Mockito.when(this.mReposTwo).thenReturn(reposTwo);
 
         callbackReposOne.getValue().onGetReposSuccess(this.mReposOne);
         callbackReposTwo.getValue().onGetReposSuccess(this.mReposTwo);

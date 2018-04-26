@@ -1,7 +1,9 @@
 package com.martin.codestar.API;
 
-import com.martin.codestar.API.models.RepositoriesResponse;
+import com.martin.codestar.API.models.Repository;
 import com.martin.codestar.API.models.User;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -22,5 +24,5 @@ public interface ApiInterface {
     Call<User> getUser(@Path(USERS.PARAM_USERNAME) String username);
 
     @GET(USERS.PATH_REPOS)
-    Call<RepositoriesResponse> getUserRepos(@Path(USERS.PARAM_USERNAME) String username);
+    Call<List<Repository>> getUserRepos(@Path(USERS.PARAM_USERNAME) String username);
 }

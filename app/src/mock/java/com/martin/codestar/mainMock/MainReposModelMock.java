@@ -2,7 +2,6 @@ package com.martin.codestar.mainMock;
 
 import android.os.Handler;
 
-import com.martin.codestar.API.models.RepositoriesResponse;
 import com.martin.codestar.API.models.Repository;
 import com.martin.codestar.main.IMainModel;
 import com.martin.codestar.main.IMainModelCallback;
