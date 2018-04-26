@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @BindView(R.id.label_main_user_two_company)
     TextView mUserTwoCompany;
 
+    @BindView(R.id.label_result)
+    TextView mLabelResult;
+
     @BindString(R.string.user_one)
     String userOneField;
     @BindString(R.string.user_two)
@@ -186,5 +189,12 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         this.mInfo.setText(String.format(Locale.ENGLISH, errorUserNoRepos, username));
         this.mInfo.setTextColor(Color.RED);
         this.mInfo.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showTie() {
+        this.mButtonStart.setVisibility(View.GONE);
+        this.mLabelResult.setText(R.string.is_tie);
+        this.mLabelResult.setVisibility(View.VISIBLE);
     }
 }

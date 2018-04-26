@@ -30,4 +30,6 @@ public interface IMainView {
     void showUsersInfo(User userOne, User userTwo);
 
     void showUserHasNoReposError(String username);
+
+    void showTie();
 }

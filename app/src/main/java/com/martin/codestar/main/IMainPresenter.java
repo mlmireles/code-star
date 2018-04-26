@@ -12,4 +12,6 @@ public interface IMainPresenter {
     void getRepositories();
 
     void starCount();
+
+    void compareStars();
 }

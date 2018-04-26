@@ -118,7 +118,7 @@
             android:layout_marginTop="@dimen/button_start_margin"
             android:text="@string/start" />
 
-        <TextView
+        <TextView android:id="@+id/label_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

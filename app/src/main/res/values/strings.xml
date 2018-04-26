@@ -14,4 +14,5 @@
     <string name="user_not_found">User not found</string>
     <string name="error_server">Server error</string>
     <string name="error_user_no_repositories">\"%l$s\" does not have any public repos</string>
+    <string name="is_tie">Is a TIE!</string>
 </resources>

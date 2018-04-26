@@ -1,7 +1,10 @@
 package com.martin.codestar.main;
 
 import com.martin.codestar.API.models.RepositoriesResponse;
+import com.martin.codestar.API.models.Repository;
 import com.martin.codestar.API.models.User;
+
+import java.util.List;
 
 /**
  * Created by Martín on 23/04/2018
@@ -108,5 +111,27 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
             this.mView.showUserHasNoReposError(this.mUserTwo.getLogin());
             return;
         }
+
+        this.compareStars();
+    }
+
+    @Override
+    public void compareStars() {
+        int starsOne = this.getStars(this.mReposOne.getRepositories());
+        int starsTwo = this.getStars(this.mReposTwo.getRepositories());
+
+        if (starsOne == starsTwo) {
+            this.mView.showTie();
+            return;
+        }
+
+    }
+
+    private int getStars(List<Repository> repositories) {
+        int stars = 0;
+        for (Repository repo : repositories) {
+            stars += repo.getStargazers_count();
+        }
+        return stars;
     }
 }
