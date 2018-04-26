@@ -24,6 +24,8 @@ public class MainReposModelMock implements IMainModel.Repos {
             public void run() {
                 List<Repository> repos = new ArrayList<>();
 
+                Repository a = new Repository();
+                
             }
         }, 2000);
     }
