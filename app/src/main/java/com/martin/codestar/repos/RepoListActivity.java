@@ -8,8 +8,13 @@ import android.widget.ProgressBar;
 import android.widget.TabHost;
 import android.widget.Toolbar;
 
+import com.martin.codestar.API.models.Repository;
 import com.martin.codestar.R;
 import com.martin.codestar.main.MainPresenter;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,10 +75,15 @@ public class RepoListActivity extends AppCompatActivity {
     }
 
     private void initReposAdapter() {
-        this.mReposAdapterOne = new ReposAdapter(this, MainPresenter.mReposOne);
+        List<Repository> one = MainPresenter.mReposOne;
+        Collections.sort(one, Repository.DESCENDING_COMPARATOR);
+        this.mReposAdapterOne = new ReposAdapter(this,
+                 one);
         this.mListUserOne.setAdapter(this.mReposAdapterOne);
 
-        this.mReposAdapterTwo = new ReposAdapter(this, MainPresenter.mReposTwo);
+        List<Repository> two = MainPresenter.mReposTwo;
+        Collections.sort(two, Repository.DESCENDING_COMPARATOR);
+        this.mReposAdapterTwo = new ReposAdapter(this, two);
         this.mListUserTwo.setAdapter(this.mReposAdapterTwo);
     }
 

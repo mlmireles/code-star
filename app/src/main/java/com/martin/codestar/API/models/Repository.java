@@ -1,11 +1,22 @@
 package com.martin.codestar.API.models;
 
-public class Repository {
+import android.support.annotation.NonNull;
+
+import java.util.Comparator;
+
+public class Repository implements Comparable<Repository> {
 
     private String name;
     private String full_name;
     private String language;
     private int stargazers_count;
+
+    public static final Comparator<Repository> DESCENDING_COMPARATOR = new Comparator<Repository>() {
+        @Override
+        public int compare(Repository repository, Repository t1) {
+            return t1.stargazers_count - repository.stargazers_count;
+        }
+    };
 
     public String getName() {
         return name;
@@ -39,4 +50,8 @@ public class Repository {
         this.stargazers_count = stargazers_count;
     }
 
+    @Override
+    public int compareTo(@NonNull Repository repository) {
+        return 0;
+    }
 }
