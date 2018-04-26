@@ -48,7 +48,7 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
 
         this.mView.showProgressBar();
         this.mUserModel.getUser(userOne, this);
-        this.mUserModel.getUser(userTwo, this);
+        //this.mUserModel.getUser(userTwo, this);
     }
 
     @Override

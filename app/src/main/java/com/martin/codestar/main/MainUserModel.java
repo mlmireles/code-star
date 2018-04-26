@@ -28,8 +28,7 @@ public class MainUserModel implements IMainModel.Users, Callback<User> {
         this.mCallback = listener;
         sUsername = username;
 
-        Call<User> call;
-        call = ApiAdapter.getApiService().getUser(username);
+        Call<User> call = ApiAdapter.getApiService().getUser(username);
         call.enqueue(this);
     }
 

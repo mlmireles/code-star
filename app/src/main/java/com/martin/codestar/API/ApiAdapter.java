@@ -17,18 +17,9 @@ public class ApiAdapter {
      */
     public static ApiInterface getApiService() {
         if (API_SERVICE == null) {
-            OkHttpClient client;
-            HttpLoggingInterceptor interceptor;
-            Retrofit retrofit;
-
-            client = new OkHttpClient();
-            interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            client.interceptors().add(interceptor);
-            retrofit = new Retrofit.Builder()
+            Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .client(client)
                     .build();
             API_SERVICE = retrofit.create(ApiInterface.class);
         }
