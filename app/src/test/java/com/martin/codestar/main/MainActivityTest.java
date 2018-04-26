@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -261,7 +262,7 @@ public class MainActivityTest {
                 = ArgumentCaptor.forClass(IMainModelCallback.Repos.class);
 
         //this.mPresenter.getRepositories();
-        Mockito.when(this.mReposModel).thenReturn(Injector.provideMainReposModel());
+        //Mockito.when(this.mReposModel).thenReturn(Injector.provideMainReposModel());
         Mockito.verify(this.mReposModel).getUserRepos(
                 Mockito.eq(USER_ONE),
                 callbackReposOne.capture()
@@ -271,8 +272,36 @@ public class MainActivityTest {
                 callbackReposTwo.capture()
         );
 
-        //Mockito.when(this.mReposOne.getRepositories()).thenReturn(new ArrayList<Repository>());
-        //Mockito.when(this.mReposTwo.getRepositories()).thenReturn(new ArrayList<Repository>());
+        List<Repository> repos = new ArrayList<>();
+        Repository a = new Repository();
+        a.setName("repo");
+        a.setFull_name("a/repo");
+        a.setLanguage("Java");
+        a.setStargazers_count(10);
+        repos.add(a);
+        Repository b = new Repository();
+        b.setName("name");
+        b.setFull_name("b/name");
+        b.setLanguage("Java");
+        b.setStargazers_count(20);
+        repos.add(b);
+        Repository c = new Repository();
+        c.setName("other-name");
+        c.setFull_name("c/other-name");
+        c.setLanguage("Go");
+        c.setStargazers_count((int) Math.random());
+        repos.add(c);
+
+        Mockito.when(this.mReposOne.getRepositories()).thenReturn(repos);
+
+        List<Repository> reposTwo = new ArrayList<>();
+        Repository d = new Repository();
+        d.setName("other-name");
+        d.setFull_name("c/other-name");
+        d.setLanguage("Go");
+        d.setStargazers_count((int) Math.random());
+        reposTwo.add(d);
+        Mockito.when(this.mReposTwo.getRepositories()).thenReturn(reposTwo);
 
         callbackReposOne.getValue().onGetReposSuccess(this.mReposOne);
         callbackReposTwo.getValue().onGetReposSuccess(this.mReposTwo);

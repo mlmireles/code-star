@@ -34,4 +34,6 @@ public interface IMainView {
     void showTie();
 
     void setWinner(User user);
+
+    void showWinner();
 }

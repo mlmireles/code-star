@@ -1,6 +1,7 @@
 package com.martin.codestar.main;
 
 import android.graphics.Color;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -67,6 +69,10 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     CircularImageView winnerAvatar;
     @BindView(R.id.label_user_winner)
     TextView mLabelUserWinner;
+    @BindView(R.id.winner_view)
+    LinearLayout mWinnerView;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
 
     @BindString(R.string.user_one)
     String userOneField;
@@ -210,5 +216,13 @@ public class MainActivity extends AppCompatActivity implements IMainView {
                 .error(R.drawable.ic_person_black)
                 .into(this.winnerAvatar);
         this.mLabelUserWinner.setText(user.getLogin());
+    }
+
+    @Override
+    public void showWinner() {
+        this.hideProgressBar();
+        this.mButtonStart.setVisibility(View.GONE);
+        this.mWinnerView.setVisibility(View.VISIBLE);
+        this.mFab.setVisibility(View.VISIBLE);
     }
 }
