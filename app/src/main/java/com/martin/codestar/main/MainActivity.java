@@ -24,6 +24,8 @@ import java.util.Locale;
 
 import butterknife.BindString;
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Martín on 23/04/2018
@@ -95,8 +97,15 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ButterKnife.bind(this);
+
         this.mPresenter = new MainPresenter(this, Injector.provideMainUserModel(),
                 Injector.provideMainReposModel());
+    }
+
+    @OnClick(R.id.button_start)
+    public void onButtonStartClick() {
+        this.mPresenter.onClickStart();
     }
 
     private String getEditInput(TextInputLayout input, TextInputEditText edit) {

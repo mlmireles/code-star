@@ -9,10 +9,10 @@
     <string name="avatar_content_description">User avatar image</string>
     <string name="view_profile">View profile</string>
 
-    <string name="error_required_field">The field \"%l$s\" cannot be empty</string>
+    <string name="error_required_field">The field \"%1$s\" cannot be empty</string>
     <string name="same_user">Same user, please write another user</string>
     <string name="user_not_found">User not found</string>
     <string name="error_server">Server error</string>
-    <string name="error_user_no_repositories">\"%l$s\" does not have any public repos</string>
+    <string name="error_user_no_repositories">\"%1$s\" does not have any public repos</string>
     <string name="is_tie">Is a TIE!</string>
 </resources>
