@@ -3,6 +3,7 @@ package com.martin.codestar.main;
 import com.martin.codestar.API.models.RepositoriesResponse;
 import com.martin.codestar.API.models.Repository;
 import com.martin.codestar.API.models.User;
+import com.martin.codestar.injector.Injector;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -260,6 +261,7 @@ public class MainActivityTest {
                 = ArgumentCaptor.forClass(IMainModelCallback.Repos.class);
 
         //this.mPresenter.getRepositories();
+        Mockito.when(this.mReposModel).thenReturn(Injector.provideMainReposModel());
         Mockito.verify(this.mReposModel).getUserRepos(
                 Mockito.eq(USER_ONE),
                 callbackReposOne.capture()
@@ -269,10 +271,12 @@ public class MainActivityTest {
                 callbackReposTwo.capture()
         );
 
-        Mockito.when(this.mReposOne.getRepositories()).thenReturn(new ArrayList<Repository>());
-        Mockito.when(this.mReposTwo.getRepositories()).thenReturn(new ArrayList<Repository>());
+        //Mockito.when(this.mReposOne.getRepositories()).thenReturn(new ArrayList<Repository>());
+        //Mockito.when(this.mReposTwo.getRepositories()).thenReturn(new ArrayList<Repository>());
 
         callbackReposOne.getValue().onGetReposSuccess(this.mReposOne);
         callbackReposTwo.getValue().onGetReposSuccess(this.mReposTwo);
+
+        Mockito.verify(this.mView).showWinner();
     }
 }

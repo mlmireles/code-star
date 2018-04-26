@@ -125,6 +125,13 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
             return;
         }
 
+        if (starsOne > starsTwo) {
+            this.mView.setWinner(this.mUserOne);
+        } else if (starsTwo > starsOne) {
+            this.mView.setWinner(this.mUserTwo);
+        }
+
+        this.mView.showWinner();
     }
 
     private int getStars(List<Repository> repositories) {

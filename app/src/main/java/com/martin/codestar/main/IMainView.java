@@ -32,4 +32,6 @@ public interface IMainView {
     void showUserHasNoReposError(String username);
 
     void showTie();
+
+    void setWinner(User user);
 }

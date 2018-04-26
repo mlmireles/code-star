@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.martin.codestar.API.models.User;
 import com.martin.codestar.R;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
@@ -62,6 +63,10 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     @BindView(R.id.label_result)
     TextView mLabelResult;
+    @BindView(R.id.avatar_winner)
+    CircularImageView winnerAvatar;
+    @BindView(R.id.label_user_winner)
+    TextView mLabelUserWinner;
 
     @BindString(R.string.user_one)
     String userOneField;
@@ -196,5 +201,14 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         this.mButtonStart.setVisibility(View.GONE);
         this.mLabelResult.setText(R.string.is_tie);
         this.mLabelResult.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void setWinner(User user) {
+        Picasso.with(this)
+                .load(user.getAvatar_url())
+                .error(R.drawable.ic_person_black)
+                .into(this.winnerAvatar);
+        this.mLabelUserWinner.setText(user.getLogin());
     }
 }
