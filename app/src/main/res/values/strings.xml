@@ -15,4 +15,5 @@
     <string name="error_server">Server error</string>
     <string name="error_user_no_repositories">\"%1$s\" does not have any public repos</string>
     <string name="is_tie">Is a TIE!</string>
+    <string name="star_icon">Star icon</string>
 </resources>

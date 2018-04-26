@@ -14,7 +14,7 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
         IMainModelCallback.Repos {
 
     private User mUserOne, mUserTwo;
-    private List<Repository> mReposOne, mReposTwo;
+    public static List<Repository> mReposOne, mReposTwo;
 
     private IMainView mView;
     private IMainModel.Users mUserModel;
@@ -81,10 +81,10 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
 
     @Override
     public void onGetReposSuccess(List<Repository> repos) {
-        if (this.mReposOne == null) {
-            this.mReposOne = repos;
+        if (mReposOne == null) {
+            mReposOne = repos;
         } else {
-            this.mReposTwo = repos;
+            mReposTwo = repos;
             this.starCount();
         }
     }
@@ -103,12 +103,12 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
 
     @Override
     public void starCount() {
-        if (this.mReposOne.size() == 0) {
+        if (mReposOne.size() == 0) {
             this.mView.showUserHasNoReposError(this.mUserOne.getLogin());
             return;
         }
 
-        if (this.mReposTwo.size() == 0) {
+        if (mReposTwo.size() == 0) {
             this.mView.showUserHasNoReposError(this.mUserTwo.getLogin());
             return;
         }
@@ -118,8 +118,8 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
 
     @Override
     public void compareStars() {
-        int starsOne = this.getStars(this.mReposOne);
-        int starsTwo = this.getStars(this.mReposTwo);
+        int starsOne = this.getStars(mReposOne);
+        int starsTwo = this.getStars(mReposTwo);
 
         if (starsOne == starsTwo) {
             this.mView.showTie();
