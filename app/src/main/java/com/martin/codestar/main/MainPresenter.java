@@ -16,7 +16,6 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
 
     private User mUserOne, mUserTwo;
     private RepositoriesResponse mReposOne, mReposTwo;
-    private boolean isRepoEmpty;
 
     private IMainView mView;
     private IMainModel.Users mUserModel;
@@ -26,8 +25,6 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
         this.mView = mView;
         this.mUserModel = mUserModel;
         this.mReposModel = mReposModel;
-
-        this.isRepoEmpty = false;
     }
 
     @Override

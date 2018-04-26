@@ -3,7 +3,6 @@ package com.martin.codestar.main;
 import com.martin.codestar.API.models.RepositoriesResponse;
 import com.martin.codestar.API.models.Repository;
 import com.martin.codestar.API.models.User;
-import com.martin.codestar.injector.Injector;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;

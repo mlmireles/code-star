@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.martin.codestar.API.models.User;
 import com.martin.codestar.R;
+import com.martin.codestar.injector.Injector;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
@@ -87,10 +88,15 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @BindString(R.string.error_user_no_repositories)
     String errorUserNoRepos;
 
+    private IMainPresenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.mPresenter = new MainPresenter(this, Injector.provideMainUserModel(),
+                Injector.provideMainReposModel());
     }
 
     private String getEditInput(TextInputLayout input, TextInputEditText edit) {
