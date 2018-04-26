@@ -34,8 +34,9 @@ public class MainActivityTest {
     private User mUserOne;
     @Mock
     private User mUserTwo;
-
+    @Mock
     private RepositoriesResponse mReposOne;
+    @Mock
     private RepositoriesResponse mReposTwo;
 
     private IMainPresenter mPresenter;
@@ -211,10 +212,8 @@ public class MainActivityTest {
                 callbackReposTwo.capture()
         );
 
-        this.mReposOne = new RepositoriesResponse();
-        this.mReposOne.repositories = new ArrayList<>();
-        this.mReposTwo = new RepositoriesResponse();
-        this.mReposTwo.repositories = new ArrayList<>();
+        Mockito.when(this.mReposOne.getRepositories()).thenReturn(new ArrayList<Repository>());
+        Mockito.when(this.mReposTwo.getRepositories()).thenReturn(new ArrayList<Repository>());
 
         callbackReposOne.getValue().onGetReposSuccess(this.mReposOne);
         callbackReposTwo.getValue().onGetReposSuccess(this.mReposTwo);
@@ -270,10 +269,8 @@ public class MainActivityTest {
                 callbackReposTwo.capture()
         );
 
-        this.mReposOne = new RepositoriesResponse();
-        this.mReposOne.repositories = new ArrayList<>();
-        this.mReposTwo = new RepositoriesResponse();
-        this.mReposTwo.repositories = new ArrayList<>();
+        Mockito.when(this.mReposOne.getRepositories()).thenReturn(new ArrayList<Repository>());
+        Mockito.when(this.mReposTwo.getRepositories()).thenReturn(new ArrayList<Repository>());
 
         callbackReposOne.getValue().onGetReposSuccess(this.mReposOne);
         callbackReposTwo.getValue().onGetReposSuccess(this.mReposTwo);

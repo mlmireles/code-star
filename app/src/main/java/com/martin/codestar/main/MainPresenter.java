@@ -99,12 +99,12 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
 
     @Override
     public void starCount() {
-        if (this.mReposOne.repositories.size() == 0) {
+        if (this.mReposOne.getRepositories().size() == 0) {
             this.mView.showUserHasNoReposError(this.mUserOne.getLogin());
             return;
         }
 
-        if (this.mReposTwo.repositories.size() == 0) {
+        if (this.mReposTwo.getRepositories().size() == 0) {
             this.mView.showUserHasNoReposError(this.mUserTwo.getLogin());
             return;
         }
