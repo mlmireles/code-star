@@ -38,4 +38,6 @@ public interface IMainView {
     void setWinner(User user);
 
     void showWinner();
+
+    void launchRepoListActivity();
 }

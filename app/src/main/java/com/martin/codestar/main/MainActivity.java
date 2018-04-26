@@ -1,5 +1,6 @@
 package com.martin.codestar.main;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.martin.codestar.API.models.User;
 import com.martin.codestar.R;
 import com.martin.codestar.injector.Injector;
+import com.martin.codestar.repos.RepoListActivity;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
@@ -106,6 +108,11 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @OnClick(R.id.button_start)
     public void onButtonStartClick() {
         this.mPresenter.onClickStart();
+    }
+
+    @OnClick(R.id.fab)
+    public void onFabClick() {
+        this.mPresenter.onClickFab();
     }
 
     private String getEditInput(TextInputLayout input, TextInputEditText edit) {
@@ -239,5 +246,14 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         this.mButtonStart.setVisibility(View.GONE);
         this.mWinnerView.setVisibility(View.VISIBLE);
         this.mFab.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void launchRepoListActivity() {
+        Intent intent = new Intent(this, RepoListActivity.class);
+        intent.putExtra(RepoListActivity.PARAM_USER_ONE, this.getUserOne());
+        intent.putExtra(RepoListActivity.PARAM_USER_TWO, this.getUserTwo());
+
+        startActivity(intent);
     }
 }

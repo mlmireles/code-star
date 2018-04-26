@@ -135,6 +135,11 @@ public class MainPresenter implements IMainPresenter, IMainModelCallback.Users,
         this.mView.showWinner();
     }
 
+    @Override
+    public void onClickFab() {
+        this.mView.launchRepoListActivity();
+    }
+
     private int getStars(List<Repository> repositories) {
         int stars = 0;
         for (Repository repo : repositories) {
